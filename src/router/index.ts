@@ -1,14 +1,13 @@
 import {Router} from 'express'
-import { ParkingModel } from '../model/ParkingModel'
+import { ParkingController } from '../controllers/ParkingController'
 
 const route = Router()
 
-function qualquer() {
-  const parkingModel = new ParkingModel(5)
-  parkingModel.toString()
-}
+const parkingController = new ParkingController()
 
-
-route.get('/', () => qualquer())
+route.get('/' ,(req, res) => res.send('Bem vindo ao estacionamento!') )
+route.get('/parkingIsAvailable', parkingController.listAvailableSlot )
+route.get('/parkingIsNotAvailable', parkingController.listNotAvailable )
+route.put('/parking', parkingController.checkin)
 
 export default route
