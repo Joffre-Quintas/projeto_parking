@@ -1,15 +1,13 @@
-import { Request, Response } from "express";
 import { parking } from "..";
+import {Checkin} from "../domain/interfaces/Checkin";
 
 export class ParkingRepository {
   
-  updateParkingRepository(pos: number, car: object) {
+  updateParkingRepository(checkin: Checkin) {
+   parking.getSlot().splice(checkin.pos,1,{...checkin})
+  }
 
-    const isEmpty = parking.getSlot()[pos] === '-'
-    if(isEmpty) {
-      throw new Error("Vaga ocupada!")
-    }
-
-   parking.getSlot().splice(pos,1,{...car, checkIn: new Date()})
+  listAllSlot() {
+    return parking.getSlot()
   }
 }
