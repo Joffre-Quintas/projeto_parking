@@ -6,9 +6,7 @@ import {Checkin} from "../domain/interfaces/Checkin";
 import {CheckinModel} from "../domain/model/CheckinModel";
 import {ParkingService} from "../service/parkingService";
 import {Checkout} from "../domain/interfaces/Checkout";
-import {CheckoutModel} from "../domain/model/CheckoutModel";
 
-const parkingRepository = new ParkingRepository()
 const parkingService = new ParkingService()
 
 export class ParkingController {
