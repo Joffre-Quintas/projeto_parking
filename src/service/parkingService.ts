@@ -79,4 +79,36 @@ export class ParkingService {
 
         return checkout
     }
+
+    createCheckoutByPlate(pos: number, priceHour: number, plateCar: string): Checkout {
+        let infoCheckin: Checkin
+        parking.getSlot().forEach((item) => {
+            if(item.plateCar === plateCar) {
+                infoCheckin = {...item}
+            }
+        })
+        if (infoCheckin! === undefined) {
+            throw new Error("Placa não confere!")
+        }
+        if (infoCheckin!.pos !== pos) {
+            throw new Error("Vaga não confere!")
+        }
+        console.log(`realizando checkout do carro ${infoCheckin.carModel}`)
+        const checkout = new CheckoutModel(
+            pos,
+            infoCheckin.plateCar,
+            infoCheckin.carModel,
+            infoCheckin.checkIn,
+            new Date()
+        )
+
+        checkout.calculateTotal(priceHour)
+
+        parking.getSlot().splice(pos,1,'-')
+
+        console.log(`Carro ${checkout.plateCar} saiu da vaga ${checkout.pos}`)
+        console.log(`Valor a pagar: ${checkout.total}`)
+
+        return checkout
+    }
 }

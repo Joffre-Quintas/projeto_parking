@@ -55,4 +55,17 @@ export class ParkingController {
     }
     res.status(200).json({ message: `Carro ${checkout.plateCar} fez o checkou na vaga ${checkout.pos}, valor a pagar R$ ${checkout.total}`})
   }
+
+  checkoutByPlate(req:Request,res: Response) {
+    const { pos, priceHour } = req.body
+    const plateCar = req.params.plate
+
+    let checkout: Checkout
+    try {
+      checkout = parkingService.createCheckoutByPlate(pos, priceHour, plateCar)
+    } catch (error: any) {
+      return res.status(404).json({ error: error.message })
+    }
+    res.status(200).json({ message: `Carro ${checkout.plateCar} fez o checkou na vaga ${checkout.pos}, valor a pagar R$ ${checkout.total}`})
+  }
 }
