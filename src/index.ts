@@ -12,7 +12,7 @@ app.use(cors())
 app.use(route)
 
 //Singleton Parking
-const randomSlot = Math.round(Math.random()+5)
+const randomSlot = 1
 export const parking = new ParkingModel(randomSlot)
 parking.toString()
 

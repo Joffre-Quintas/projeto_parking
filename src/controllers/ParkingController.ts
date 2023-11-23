@@ -1,7 +1,6 @@
 //@ts-nocheck
 import { Request, Response } from "express";
 import { parking } from "..";
-import { ParkingRepository } from "../repositories/ParkingRepository";
 import {Checkin} from "../domain/interfaces/Checkin";
 import {CheckinModel} from "../domain/model/CheckinModel";
 import {ParkingService} from "../service/parkingService";

@@ -12,12 +12,13 @@ export default function validationPlateCheckout(req:Request, res: Response, next
     const plateRegex = /[A-Z]{3}[0-9]{4}/
 
     if (plateCar) {
-        if(!existCarPlate) {
-            return res.status(404).json({ message: `Nao existe carro estacionado com a placa ${plateCar}`})
-        }
         if(!plateRegex.test(plateCar)) {
             return res.status(404).json({ message: `Informe corretamente a placa. Formato: XXX0000`})
         }
+        if(!existCarPlate) {
+            return res.status(404).json({ message: `Nao existe carro estacionado com a placa ${plateCar}`})
+        }
+
     }
 
     next()
