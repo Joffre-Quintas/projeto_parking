@@ -15,7 +15,7 @@ route.get('/' ,(req: Request, res: Response) => res.send('Bem vindo ao estaciona
 route.get('/parkingIsAvailable', parkingController.listAvailableSlot )
 route.get('/parkingIsNotAvailable', parkingController.listNotAvailable )
 route.put('/checkin',validationSchema, isAvailable,validationDuplicateCheckin,logger,parkingController.checkin)
-route.put('/checkout', valdiationCheckout ,logger,parkingController.checkout)
+route.put('/checkout', validationPlateCheckout ,logger,parkingController.checkout)
 route.put('/checkoutbyplate/:plate',validationPlateCheckout,logger,parkingController.checkoutByPlate)
 
 export default route
